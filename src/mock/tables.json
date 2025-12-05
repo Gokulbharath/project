@@ -1,0 +1,146 @@
+[
+  {
+    "id": "T01",
+    "capacity": 4,
+    "category": "VIP",
+    "shape": "square",
+    "status": "available",
+    "position": { "x": 0, "y": 0 },
+    "minSpend": 500
+  },
+  {
+    "id": "T02",
+    "capacity": 6,
+    "category": "VIP",
+    "shape": "round",
+    "status": "reserved",
+    "position": { "x": 1, "y": 0 },
+    "minSpend": 800,
+    "booking": {
+      "name": "John Smith",
+      "groupSize": 6,
+      "subCode": "K1",
+      "paymentStatus": "pending"
+    }
+  },
+  {
+    "id": "T03",
+    "capacity": 8,
+    "category": "VIP",
+    "shape": "square",
+    "status": "occupied",
+    "position": { "x": 2, "y": 0 },
+    "minSpend": 1000,
+    "booking": {
+      "name": "Sarah Johnson",
+      "groupSize": 8,
+      "subCode": "K2",
+      "paymentStatus": "paid"
+    }
+  },
+  {
+    "id": "T04",
+    "capacity": 4,
+    "category": "Standard",
+    "shape": "round",
+    "status": "available",
+    "position": { "x": 0, "y": 1 },
+    "minSpend": 200
+  },
+  {
+    "id": "T05",
+    "capacity": 4,
+    "category": "Standard",
+    "shape": "square",
+    "status": "reserved",
+    "position": { "x": 1, "y": 1 },
+    "minSpend": 200,
+    "booking": {
+      "name": "Mike Chen",
+      "groupSize": 4,
+      "subCode": "K3",
+      "paymentStatus": "pending"
+    }
+  },
+  {
+    "id": "T06",
+    "capacity": 6,
+    "category": "Premium",
+    "shape": "round",
+    "status": "occupied",
+    "position": { "x": 2, "y": 1 },
+    "minSpend": 600,
+    "booking": {
+      "name": "Emma Wilson",
+      "groupSize": 5,
+      "subCode": "K4",
+      "paymentStatus": "paid"
+    }
+  },
+  {
+    "id": "T07",
+    "capacity": 4,
+    "category": "Standard",
+    "shape": "square",
+    "status": "available",
+    "position": { "x": 0, "y": 2 },
+    "minSpend": 200
+  },
+  {
+    "id": "T08",
+    "capacity": 6,
+    "category": "Premium",
+    "shape": "round",
+    "status": "available",
+    "position": { "x": 1, "y": 2 },
+    "minSpend": 600
+  },
+  {
+    "id": "T09",
+    "capacity": 4,
+    "category": "Standard",
+    "shape": "square",
+    "status": "occupied",
+    "position": { "x": 2, "y": 2 },
+    "minSpend": 200,
+    "booking": {
+      "name": "David Brown",
+      "groupSize": 4,
+      "subCode": "K5",
+      "paymentStatus": "paid"
+    }
+  },
+  {
+    "id": "T10",
+    "capacity": 8,
+    "category": "VIP",
+    "shape": "round",
+    "status": "reserved",
+    "position": { "x": 3, "y": 0 },
+    "minSpend": 1200,
+    "booking": {
+      "name": "Lisa Anderson",
+      "groupSize": 7,
+      "subCode": "K6",
+      "paymentStatus": "pending"
+    }
+  },
+  {
+    "id": "T11",
+    "capacity": 4,
+    "category": "Standard",
+    "shape": "square",
+    "status": "available",
+    "position": { "x": 3, "y": 1 },
+    "minSpend": 200
+  },
+  {
+    "id": "T12",
+    "capacity": 6,
+    "category": "Premium",
+    "shape": "round",
+    "status": "available",
+    "position": { "x": 3, "y": 2 },
+    "minSpend": 600
+  }
+]

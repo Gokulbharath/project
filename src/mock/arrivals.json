@@ -1,0 +1,42 @@
+[
+  {
+    "id": "A001",
+    "guestName": "Sarah Johnson",
+    "tableId": "T03",
+    "subCode": "K2",
+    "timestamp": "2024-12-05T19:32:15Z",
+    "groupSize": 8
+  },
+  {
+    "id": "A002",
+    "guestName": "Emma Wilson",
+    "tableId": "T06",
+    "subCode": "K4",
+    "timestamp": "2024-12-05T19:05:42Z",
+    "groupSize": 5
+  },
+  {
+    "id": "A003",
+    "guestName": "David Brown",
+    "tableId": "T09",
+    "subCode": "K5",
+    "timestamp": "2024-12-05T20:28:33Z",
+    "groupSize": 4
+  },
+  {
+    "id": "A004",
+    "guestName": "Jessica Martinez",
+    "tableId": "T07",
+    "subCode": "K1",
+    "timestamp": "2024-12-05T18:45:20Z",
+    "groupSize": 3
+  },
+  {
+    "id": "A005",
+    "guestName": "Kevin White",
+    "tableId": "T11",
+    "subCode": "K3",
+    "timestamp": "2024-12-05T20:15:10Z",
+    "groupSize": 4
+  }
+]

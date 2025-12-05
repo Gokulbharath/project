@@ -1,0 +1,72 @@
+[
+  {
+    "id": "P001",
+    "bookingId": "B001",
+    "guestName": "John Smith",
+    "tableId": "T02",
+    "amount": 800,
+    "status": "pending",
+    "dueDate": "2024-12-05T20:00:00Z",
+    "method": null
+  },
+  {
+    "id": "P002",
+    "bookingId": "B002",
+    "guestName": "Sarah Johnson",
+    "tableId": "T03",
+    "amount": 1000,
+    "status": "paid",
+    "dueDate": "2024-12-05T19:30:00Z",
+    "method": "credit_card"
+  },
+  {
+    "id": "P003",
+    "bookingId": "B003",
+    "guestName": "Mike Chen",
+    "tableId": "T05",
+    "amount": 200,
+    "status": "pending",
+    "dueDate": "2024-12-05T21:00:00Z",
+    "method": null
+  },
+  {
+    "id": "P004",
+    "bookingId": "B004",
+    "guestName": "Emma Wilson",
+    "tableId": "T06",
+    "amount": 600,
+    "status": "paid",
+    "dueDate": "2024-12-05T19:00:00Z",
+    "method": "cash"
+  },
+  {
+    "id": "P005",
+    "bookingId": "B005",
+    "guestName": "David Brown",
+    "tableId": "T09",
+    "amount": 200,
+    "status": "paid",
+    "dueDate": "2024-12-05T20:30:00Z",
+    "method": "credit_card"
+  },
+  {
+    "id": "P006",
+    "bookingId": "B006",
+    "guestName": "Lisa Anderson",
+    "tableId": "T10",
+    "amount": 1200,
+    "status": "pending",
+    "dueDate": "2024-12-05T22:00:00Z",
+    "method": null
+  },
+  {
+    "id": "P007",
+    "bookingId": "B007",
+    "guestName": "Robert Taylor",
+    "tableId": "T01",
+    "amount": 500,
+    "status": "overdue",
+    "dueDate": "2024-12-05T23:00:00Z",
+    "method": null
+  }
+]

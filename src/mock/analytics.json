@@ -1,0 +1,31 @@
+{
+  "kpis": {
+    "totalBookings": 156,
+    "monthlyRevenue": 47850,
+    "peakHours": "21:00 - 23:00",
+    "tableOccupancy": 78
+  },
+  "dailyBookings": [
+    { "date": "2024-11-29", "bookings": 18 },
+    { "date": "2024-11-30", "bookings": 24 },
+    { "date": "2024-12-01", "bookings": 22 },
+    { "date": "2024-12-02", "bookings": 19 },
+    { "date": "2024-12-03", "bookings": 26 },
+    { "date": "2024-12-04", "bookings": 31 },
+    { "date": "2024-12-05", "bookings": 28 }
+  ],
+  "hourlyOccupancy": [
+    { "hour": "18:00", "occupied": 3, "total": 12 },
+    { "hour": "19:00", "occupied": 5, "total": 12 },
+    { "hour": "20:00", "occupied": 8, "total": 12 },
+    { "hour": "21:00", "occupied": 11, "total": 12 },
+    { "hour": "22:00", "occupied": 10, "total": 12 },
+    { "hour": "23:00", "occupied": 9, "total": 12 },
+    { "hour": "00:00", "occupied": 6, "total": 12 }
+  ],
+  "categoryUsage": [
+    { "category": "VIP", "bookings": 45, "revenue": 27500 },
+    { "category": "Premium", "bookings": 62, "revenue": 14200 },
+    { "category": "Standard", "bookings": 49, "revenue": 6150 }
+  ]
+}

@@ -1,0 +1,82 @@
+[
+  {
+    "id": "L001",
+    "timestamp": "2024-12-05T20:45:12Z",
+    "action": "Table Status Changed",
+    "user": "staff@nightscene.com",
+    "details": "Table T03 marked as occupied",
+    "severity": "info"
+  },
+  {
+    "id": "L002",
+    "timestamp": "2024-12-05T20:42:33Z",
+    "action": "Booking Created",
+    "user": "staff@nightscene.com",
+    "details": "Walk-in booking for John Doe, Table T07",
+    "severity": "info"
+  },
+  {
+    "id": "L003",
+    "timestamp": "2024-12-05T20:38:55Z",
+    "action": "Payment Received",
+    "user": "staff@nightscene.com",
+    "details": "Payment of $800 received for Table T02",
+    "severity": "info"
+  },
+  {
+    "id": "L004",
+    "timestamp": "2024-12-05T20:35:20Z",
+    "action": "Guest Arrival",
+    "user": "system",
+    "details": "Guest Sarah Johnson arrived at Table T03",
+    "severity": "info"
+  },
+  {
+    "id": "L005",
+    "timestamp": "2024-12-05T20:30:47Z",
+    "action": "No-Show Alert",
+    "user": "system",
+    "details": "Booking B007 marked as no-show after 15 min grace period",
+    "severity": "warn"
+  },
+  {
+    "id": "L006",
+    "timestamp": "2024-12-05T20:25:15Z",
+    "action": "Table Layout Updated",
+    "user": "admin@nightscene.com",
+    "details": "Table T12 capacity changed from 4 to 6",
+    "severity": "info"
+  },
+  {
+    "id": "L007",
+    "timestamp": "2024-12-05T20:20:33Z",
+    "action": "Login Failed",
+    "user": "unknown@nightscene.com",
+    "details": "Failed login attempt from IP 192.168.1.100",
+    "severity": "warn"
+  },
+  {
+    "id": "L008",
+    "timestamp": "2024-12-05T20:15:08Z",
+    "action": "System Error",
+    "user": "system",
+    "details": "Failed to connect to payment gateway",
+    "severity": "error"
+  },
+  {
+    "id": "L009",
+    "timestamp": "2024-12-05T20:10:42Z",
+    "action": "Staff Login",
+    "user": "staff@nightscene.com",
+    "details": "Successful login from IP 192.168.1.50",
+    "severity": "info"
+  },
+  {
+    "id": "L010",
+    "timestamp": "2024-12-05T20:05:19Z",
+    "action": "Booking Modified",
+    "user": "staff@nightscene.com",
+    "details": "Booking B003 group size updated from 3 to 4",
+    "severity": "info"
+  }
+]
