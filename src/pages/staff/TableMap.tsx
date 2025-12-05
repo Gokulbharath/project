@@ -1,101 +1,82 @@
-import { useEffect, useState } from 'react';
-import { TableBlock } from '@/components/TableBlock';
-import { TableDrawer } from '@/components/TableDrawer';
-import { api } from '@/services/api';
-import { useSocket } from '@/hooks/useSocket';
-import type { Table } from '@/types';
-import { Skeleton } from '@/components/ui/skeleton';
-import { Badge } from '@/components/ui/badge';
+import { useState, useCallback } from 'react';
+import { MapCanvas } from '@/components/table-map/MapCanvas';
+import { TableDrawer } from '@/components/table-map/TableDrawer';
+import { Filters } from '@/components/table-map/Filters';
+import { TableLegend } from '@/components/table-map/TableLegend';
+import { tables as mockTables } from '@/mock/tables';
+
+type FilterStatus = 'all' | 'available' | 'reserved' | 'occupied';
 
 export const TableMap = () => {
-  const [tables, setTables] = useState<Table[]>([]);
-  const [selectedTable, setSelectedTable] = useState<Table | null>(null);
-  const [loading, setLoading] = useState(true);
-  const { connected, on } = useSocket();
+  const [selectedTableId, setSelectedTableId] = useState<string | null>(null);
+  const [activeFilter, setActiveFilter] = useState<FilterStatus>('all');
 
-  useEffect(() => {
-    const loadTables = async () => {
-      try {
-        const data = await api.tables.getAll();
-        setTables(data);
-      } catch (error) {
-        console.error('Failed to load tables:', error);
-      } finally {
-        setLoading(false);
-      }
-    };
+  const selectedTable = mockTables.find((t) => t.id === selectedTableId) || null;
 
-    loadTables();
+  const filteredTables = mockTables.filter((table) => {
+    if (activeFilter === 'all') return true;
+    return table.status === activeFilter;
+  });
+
+  const counts = {
+    all: mockTables.length,
+    available: mockTables.filter((t) => t.status === 'available').length,
+    reserved: mockTables.filter((t) => t.status === 'reserved').length,
+    occupied: mockTables.filter((t) => t.status === 'occupied').length,
+  };
+
+  const handleTableClick = useCallback((id?: string) => {
+    setSelectedTableId(id || null);
   }, []);
 
-  useEffect(() => {
-    const cleanup = on('table:updated', (updatedTable: Table) => {
-      setTables((prev) => prev.map((t) => (t.id === updatedTable.id ? updatedTable : t)));
-    });
+  const handleFilterChange = (filter: FilterStatus) => {
+    setActiveFilter(filter);
+  };
 
-    return cleanup;
-  }, [on]);
-
-  if (loading) {
-    return (
-      <div className="space-y-6">
-        <div className="flex items-center justify-between">
-          <div>
-            <h1 className="text-3xl font-bold text-white mb-2">Live Table Map</h1>
-            <p className="text-muted-foreground">Real-time table status</p>
-          </div>
-          <Skeleton className="h-6 w-32" />
-        </div>
-
-        <div className="grid grid-cols-4 gap-4">
-          {[...Array(12)].map((_, i) => (
-            <Skeleton key={i} className="aspect-square rounded-xl" />
-          ))}
-        </div>
-      </div>
-    );
-  }
+  const handleDrawerClose = () => {
+    setSelectedTableId(null);
+  };
 
   return (
-    <div className="space-y-6">
-      <div className="flex items-center justify-between">
-        <div>
-          <h1 className="text-3xl font-bold text-white mb-2">Live Table Map</h1>
-          <p className="text-muted-foreground">Real-time table status</p>
-        </div>
-
-        <Badge
-          variant={connected ? 'default' : 'destructive'}
-          className={connected ? 'bg-neon-success/20 text-neon-success border-neon-success/30' : ''}
-        >
-          {connected ? 'Live' : 'Disconnected'}
-        </Badge>
+    <div className="space-y-6 pb-8">
+      {/* Header */}
+      <div>
+        <h1 className="heading-hero">Table Map</h1>
+        <p className="text-text-dim">Manage live seating with zoom, pan, and fit-to-screen</p>
       </div>
 
-      <div className="glass-card p-6">
-        <div className="grid grid-cols-4 gap-4">
-          {tables.map((table) => (
-            <TableBlock key={table.id} table={table} onClick={() => setSelectedTable(table)} />
-          ))}
-        </div>
+      {/* Filters */}
+      <Filters activeFilter={activeFilter} onFilterChange={handleFilterChange} counts={counts} />
+
+      {/* Legend */}
+      <div className="flex items-center gap-8">
+        <TableLegend />
       </div>
 
-      <div className="flex items-center justify-center gap-6 text-sm">
-        <div className="flex items-center gap-2">
-          <div className="w-4 h-4 rounded-full bg-neon-success/30 border-2 border-neon-success" />
-          <span className="text-muted-foreground">Available</span>
-        </div>
-        <div className="flex items-center gap-2">
-          <div className="w-4 h-4 rounded-full bg-neon-reserved/30 border-2 border-neon-reserved" />
-          <span className="text-muted-foreground">Reserved</span>
-        </div>
-        <div className="flex items-center gap-2">
-          <div className="w-4 h-4 rounded-full bg-neon-occupied/30 border-2 border-neon-occupied" />
-          <span className="text-muted-foreground">Occupied</span>
-        </div>
-      </div>
+      {/* Canvas with zoom/pan */}
+      <MapCanvas
+        items={filteredTables.map((t) => ({
+          id: t.id,
+          label: t.label,
+          section: t.section,
+          capacity: t.capacity,
+          status: t.status,
+          x: t.x,
+          y: t.y,
+          w: 96,
+          h: 128,
+          guestName: t.guestName,
+          arrivalTime: t.arrivalTime,
+          paymentStatus: t.paymentStatus,
+          subcodes: t.subcodes,
+        }))}
+        selectedId={selectedTableId || undefined}
+        onSelect={handleTableClick}
+        fitConfig={{ padding: 24, minScale: 0.5, maxScale: 2, grid: 8 }}
+      />
 
-      <TableDrawer table={selectedTable} open={!!selectedTable} onClose={() => setSelectedTable(null)} />
+      {/* Table Drawer */}
+      <TableDrawer table={selectedTable} open={!!selectedTable} onOpenChange={handleDrawerClose} />
     </div>
   );
 };

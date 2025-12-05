@@ -58,13 +58,19 @@ export default {
           4: 'hsl(var(--chart-4))',
           5: 'hsl(var(--chart-5))',
         },
-        neon: {
-          primary: '#4A6CFF',
-          accent: '#A56CFF',
-          success: '#00FF90',
-          reserved: '#4388FF',
-          occupied: '#FF4466',
-        },
+        // Design tokens
+        night: '#0B0B1A',
+        surface: '#121229',
+        'surface-alt': '#0E0E20',
+        'text-high': '#E7E7F4',
+        'text-dim': '#A3A3B2',
+        neon: '#8A5CFF',
+        cyan: '#4DD4FF',
+        blue: '#2EB1FF',
+        pink: '#FF4D8D',
+        green: '#20E3B2',
+        yellow: '#FFC857',
+        red: '#FF5C7C',
       },
       keyframes: {
         'accordion-down': {
@@ -104,6 +110,8 @@ export default {
         'slide-in': 'slide-in 0.3s ease-out',
       },
       boxShadow: {
+        'card': '0 1px 0 rgba(255,255,255,.04) inset, 0 12px 32px rgba(0,0,0,.35)',
+        'glow': '0 0 0 1px rgba(138,92,255,.35), 0 10px 30px rgba(138,92,255,.20)',
         'neon-sm': '0 0 10px rgba(74, 108, 255, 0.3)',
         'neon-md': '0 0 20px rgba(74, 108, 255, 0.4)',
         'neon-lg': '0 0 30px rgba(74, 108, 255, 0.5)',

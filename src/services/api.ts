@@ -7,6 +7,9 @@ import type {
   Log,
   WalkInBookingForm,
   VenueOnboarding,
+  User,
+  AuthResponse,
+  UserRole,
 } from '@/types';
 import { API_DELAY } from '@/utils/constants';
 
@@ -19,7 +22,57 @@ import logsData from '@/mock/logs.json';
 
 const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
+// Mock users for demo
+const mockUsers: Record<string, { password: string; user: User }> = {
+  'staff@nightscene.com': {
+    password: 'any',
+    user: {
+      id: 'staff-001',
+      email: 'staff@nightscene.com',
+      name: 'John Staff',
+      role: 'staff',
+    },
+  },
+  'admin@nightscene.com': {
+    password: 'any',
+    user: {
+      id: 'admin-001',
+      email: 'admin@nightscene.com',
+      name: 'Jane Admin',
+      role: 'admin',
+    },
+  },
+};
+
 export const api = {
+  auth: {
+    login: async (email: string, _password: string): Promise<AuthResponse> => {
+      await delay(API_DELAY);
+      const userCreds = mockUsers[email.toLowerCase()];
+      if (userCreds) {
+        return {
+          token: `token_${userCreds.user.id}`,
+          user: userCreds.user,
+        };
+      }
+      // For any other email/password combination, create a staff user
+      return {
+        token: `token_${Date.now()}`,
+        user: {
+          id: `user_${Date.now()}`,
+          email,
+          name: email.split('@')[0],
+          role: 'staff' as UserRole,
+        },
+      };
+    },
+
+    logout: async (): Promise<void> => {
+      await delay(API_DELAY);
+      localStorage.removeItem('token');
+      localStorage.removeItem('user');
+    },
+  },
   tables: {
     getAll: async (): Promise<Table[]> => {
       await delay(API_DELAY);
@@ -136,24 +189,6 @@ export const api = {
     onboard: async (data: VenueOnboarding): Promise<void> => {
       await delay(API_DELAY);
       console.log('Venue onboarded:', data);
-    },
-  },
-
-  auth: {
-    login: async (email: string, password: string): Promise<{ token: string; user: any }> => {
-      await delay(API_DELAY);
-      if (email && password) {
-        return {
-          token: 'mock-jwt-token',
-          user: {
-            id: '1',
-            email,
-            name: 'Staff User',
-            role: email.includes('admin') ? 'admin' : 'staff',
-          },
-        };
-      }
-      throw new Error('Invalid credentials');
     },
   },
 };

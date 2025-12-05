@@ -96,6 +96,20 @@ export interface WalkInBookingForm {
   notes: string;
 }
 
+export type UserRole = 'staff' | 'admin';
+
+export interface User {
+  id: string;
+  email: string;
+  name: string;
+  role: UserRole;
+}
+
+export interface AuthResponse {
+  token: string;
+  user: User;
+}
+
 export interface VenueOnboarding {
   venueName: string;
   address: string;

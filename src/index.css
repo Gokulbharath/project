@@ -43,7 +43,7 @@
   }
 
   body {
-    @apply bg-[#0A0A0A] text-foreground font-sans antialiased;
+    @apply bg-night text-text-high font-sans antialiased;
     margin: 0;
     min-height: 100vh;
   }
@@ -54,20 +54,22 @@
 }
 
 @layer components {
+  /* Glass effect */
   .glass {
-    @apply bg-white/[0.03] backdrop-blur-xl border border-white/10;
+    @apply backdrop-blur-md bg-[rgba(18,18,41,.55)] border border-white/5 rounded-2xl;
   }
 
   .glass-card {
-    @apply glass rounded-xl shadow-lg;
+    @apply glass rounded-2xl shadow-card;
   }
 
+  /* Neon borders & hovers */
   .neon-border {
-    @apply border border-neon-primary/30 shadow-neon-sm;
+    @apply border border-[rgba(138,92,255,.25)];
   }
 
-  .neon-border-accent {
-    @apply border border-neon-accent/30 shadow-accent-sm;
+  .neon-hover {
+    @apply transition-all duration-200 hover:shadow-glow;
   }
 
   .hover-glow {
@@ -76,6 +78,28 @@
 
   .hover-lift {
     @apply transition-transform duration-200 hover:-translate-y-0.5;
+  }
+
+  /* Typography */
+  .heading-hero {
+    @apply text-2xl md:text-3xl font-semibold tracking-tight text-white;
+  }
+
+  .stat-value {
+    @apply text-3xl md:text-4xl font-semibold text-white;
+  }
+
+  .stat-delta-up {
+    @apply text-green;
+  }
+
+  .stat-delta-down {
+    @apply text-red;
+  }
+
+  /* Badges */
+  .k-badge {
+    @apply px-2 py-1 rounded-md text-xs font-medium;
   }
 }
 
@@ -91,5 +115,11 @@
 
   .scrollbar-hide::-webkit-scrollbar {
     display: none;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * {
+      @apply !transition-none !animate-none;
+    }
   }
 }

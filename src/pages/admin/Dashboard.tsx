@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react';
 import { KpiCard } from '@/components/KpiCard';
 import { ChartCard } from '@/components/ChartCard';
 import { api } from '@/services/api';
-import { TrendingUp, DollarSign, Clock, PieChart } from 'lucide-react';
 import { Skeleton } from '@/components/ui/skeleton';
 import { LineChart, Line, BarChart, Bar, PieChart as RechartsPie, Pie, Cell, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Legend } from 'recharts';
 import type { Analytics } from '@/types';
@@ -58,22 +57,18 @@ export const AdminDashboard = () => {
         <KpiCard
           title="Total Bookings"
           value={analytics.kpis.totalBookings}
-          icon={TrendingUp}
         />
         <KpiCard
           title="Monthly Revenue"
           value={`$${analytics.kpis.monthlyRevenue.toLocaleString()}`}
-          icon={DollarSign}
         />
         <KpiCard
           title="Peak Hours"
           value={analytics.kpis.peakHours}
-          icon={Clock}
         />
         <KpiCard
           title="Table Occupancy"
           value={`${analytics.kpis.tableOccupancy}%`}
-          icon={PieChart}
         />
       </div>
 
