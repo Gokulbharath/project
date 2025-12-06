@@ -5,7 +5,7 @@ import { TableBlock } from '@/components/TableBlock';
 import { api } from '@/services/api';
 import { toast } from 'sonner';
 import type { Table } from '@/types';
-import { Save, Plus } from 'lucide-react';
+import Icon from '@/components/ui/Icon';
 
 export const LayoutEditor = () => {
   const [tables, setTables] = useState<Table[]>([]);
@@ -53,7 +53,7 @@ export const LayoutEditor = () => {
 
         <div className="flex gap-2">
           <Button variant="outline" className="border-neon-primary/30 hover:bg-neon-primary/10">
-            <Plus className="w-4 h-4 mr-2" />
+            <Icon name="plus" size={16} className="mr-2" />
             Add Table
           </Button>
           <Button
@@ -61,7 +61,7 @@ export const LayoutEditor = () => {
             className="bg-neon-success hover:bg-neon-success/80"
             disabled={saving}
           >
-            <Save className="w-4 h-4 mr-2" />
+            <Icon name="save" size={16} className="mr-2" />
             {saving ? 'Saving...' : 'Save Layout'}
           </Button>
         </div>

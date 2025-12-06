@@ -1,4 +1,4 @@
-import { Bell, Search, Shield } from 'lucide-react';
+import Icon from '@/components/ui/Icon';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { useState } from 'react';
@@ -17,7 +17,7 @@ export const Topbar = ({ venueName = 'AURA Nightclub' }: TopbarProps) => {
   });
 
   return (
-    <header className="sticky top-0 z-40 border-b border-[rgba(138,92,255,.1)]">
+    <header className="sticky top-0 z-30 border-b border-[rgba(138,92,255,.1)]">
       <div
         className="glass p-4 md:p-6 flex items-center justify-between gap-4"
         style={{
@@ -32,7 +32,7 @@ export const Topbar = ({ venueName = 'AURA Nightclub' }: TopbarProps) => {
         {/* Center: Search (hidden on small screens) */}
         <div className="flex-1 max-w-xs hidden md:block">
           <div className="relative">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-text-dim" />
+            <Icon name="search" size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-text-dim" />
             <Input
               placeholder="Search..."
               className="pl-10 h-9 bg-white/5 border-white/10 focus:border-neon-primary/50 placeholder:text-text-dim"
@@ -53,7 +53,7 @@ export const Topbar = ({ venueName = 'AURA Nightclub' }: TopbarProps) => {
             size="icon"
             className="relative h-9 w-9 text-text-dim hover:text-text-high hover:bg-white/5 transition-colors"
           >
-            <Bell className="w-5 h-5" />
+            <Icon name="notifications" size={18} />
             <span className="absolute top-1 right-1 h-2 w-2 bg-error rounded-full" />
           </Button>
 
@@ -63,7 +63,7 @@ export const Topbar = ({ venueName = 'AURA Nightclub' }: TopbarProps) => {
             size="icon"
             className="h-9 w-9 text-text-dim hover:text-text-high hover:bg-white/5 transition-colors"
           >
-            <Shield className="w-5 h-5" />
+            <Icon name="info" size={18} />
           </Button>
 
           {/* User Avatar */}

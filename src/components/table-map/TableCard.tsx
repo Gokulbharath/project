@@ -1,4 +1,4 @@
-import { Users } from 'lucide-react';
+import Icon from '@/components/ui/Icon';
 import { cn } from '@/lib/utils';
 import type { TableItem } from '@/types/floor';
 
@@ -8,6 +8,7 @@ interface TableCardProps {
   onOpen?: () => void;
   viewportScale: number;
   style?: React.CSSProperties;
+  className?: string;
 }
 
 const statusColors = {
@@ -28,6 +29,7 @@ export const TableCard = ({
   onOpen,
   viewportScale,
   style,
+  className,
 }: TableCardProps) => {
   const { label, section, capacity, status } = table;
   const w = table.w ?? 96;
@@ -53,7 +55,8 @@ export const TableCard = ({
         'cursor-pointer focus:outline-none focus:ring-2 focus:ring-[rgba(138,92,255,.6)]',
         'hover:shadow-glow',
         statusColors[status],
-        selected && 'ring-2 ring-neon shadow-glow'
+        selected && 'ring-2 ring-neon shadow-glow',
+        className
       )}
     >
       {/* Anti-scale content wrapper */}
@@ -78,7 +81,7 @@ export const TableCard = ({
 
         {/* Bottom row: Capacity */}
         <div className="flex items-center gap-1">
-          <Users className="w-3 h-3 text-text-dim flex-shrink-0" />
+          <Icon name="group" size={12} className="text-text-dim flex-shrink-0" />
           <span className="text-xs text-text-dim font-medium">{capacity}</span>
         </div>
       </div>

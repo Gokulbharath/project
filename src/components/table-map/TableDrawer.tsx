@@ -1,4 +1,4 @@
-import { X, Check } from 'lucide-react';
+import Icon from '@/components/ui/Icon';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 import type { TableData } from '@/mock/tables';
@@ -30,10 +30,10 @@ export const TableDrawer = ({ table, open, onOpenChange }: TableDrawerProps) => 
 
   return (
     <>
-      {/* Overlay */}
+      {/* Overlay scoped to parent container */}
       <div
         className={cn(
-          'fixed inset-0 z-40 transition-opacity duration-200',
+          'absolute inset-0 z-10 transition-opacity duration-200 pointer-events-auto',
           open ? 'opacity-100 visible' : 'opacity-0 invisible',
         )}
         onClick={() => onOpenChange(false)}
@@ -43,10 +43,10 @@ export const TableDrawer = ({ table, open, onOpenChange }: TableDrawerProps) => 
         }}
       />
 
-      {/* Drawer */}
+      {/* Drawer (positioned inside parent) */}
       <div
         className={cn(
-          'fixed right-0 top-0 z-50 h-screen w-full max-w-sm glass neon-border flex flex-col',
+          'absolute right-0 top-0 z-20 h-full w-full max-w-sm glass neon-border flex flex-col pointer-events-auto',
           'transition-transform duration-300',
           open ? 'translate-x-0' : 'translate-x-full',
         )}
@@ -61,7 +61,7 @@ export const TableDrawer = ({ table, open, onOpenChange }: TableDrawerProps) => 
             onClick={() => onOpenChange(false)}
             className="p-2 hover:bg-white/5 rounded-lg transition-colors focus:ring-2 focus:ring-[rgba(138,92,255,.6)]"
           >
-            <X className="w-5 h-5 text-text-dim" />
+            <Icon name="close" size={18} className="text-text-dim" />
           </button>
         </div>
 
@@ -130,7 +130,7 @@ export const TableDrawer = ({ table, open, onOpenChange }: TableDrawerProps) => 
           <Button
             className="w-full bg-neon hover:bg-neon/80 text-white shadow-glow transition-all duration-200"
           >
-            <Check className="w-4 h-4 mr-2" />
+            <Icon name="check" size={14} className="mr-2" />
             Check-In Guest
           </Button>
           <Button

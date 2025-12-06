@@ -1,5 +1,5 @@
 import { ReactNode } from 'react';
-import { Sparkles } from 'lucide-react';
+import Icon from '@/components/ui/Icon';
 
 interface AuthLayoutProps {
   children: ReactNode;
@@ -16,7 +16,7 @@ export const AuthLayout = ({ children }: AuthLayoutProps) => {
       <div className="w-full max-w-md z-10">
         <div className="text-center mb-8">
           <div className="flex items-center justify-center gap-2 mb-4">
-            <Sparkles className="w-10 h-10 text-neon-primary" />
+            <Icon name="sparkles" size={36} className="text-neon-primary" />
             <h1 className="text-4xl font-bold text-white">NightScene</h1>
           </div>
           <p className="text-muted-foreground">Table Management System</p>

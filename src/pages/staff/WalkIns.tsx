@@ -8,7 +8,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { api } from '@/services/api';
 import { toast } from 'sonner';
 import type { Table, WalkInBookingForm } from '@/types';
-import { UserPlus } from 'lucide-react';
+import Icon from '@/components/ui/Icon';
 
 export const WalkIns = () => {
   const [tables, setTables] = useState<Table[]>([]);
@@ -160,7 +160,7 @@ export const WalkIns = () => {
             className="w-full bg-neon-primary hover:bg-neon-primary/80 shadow-neon-md"
             disabled={loading}
           >
-            <UserPlus className="w-4 h-4 mr-2" />
+            <Icon name="walkins" size={16} className="mr-2" />
             {loading ? 'Creating...' : 'Create Booking'}
           </Button>
         </form>

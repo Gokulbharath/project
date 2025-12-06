@@ -53,30 +53,32 @@ export const TableMap = () => {
         <TableLegend />
       </div>
 
-      {/* Canvas with zoom/pan */}
-      <MapCanvas
-        items={filteredTables.map((t) => ({
-          id: t.id,
-          label: t.label,
-          section: t.section,
-          capacity: t.capacity,
-          status: t.status,
-          x: t.x,
-          y: t.y,
-          w: 96,
-          h: 128,
-          guestName: t.guestName,
-          arrivalTime: t.arrivalTime,
-          paymentStatus: t.paymentStatus,
-          subcodes: t.subcodes,
-        }))}
-        selectedId={selectedTableId || undefined}
-        onSelect={handleTableClick}
-        fitConfig={{ padding: 24, minScale: 0.5, maxScale: 2, grid: 8 }}
-      />
+      {/* Canvas with zoom/pan and scoped drawer */}
+      <div id="table-map-canvas" className="relative z-0 h-[72vh] min-h-[520px] rounded-2xl">
+        <MapCanvas
+          items={filteredTables.map((t) => ({
+            id: t.id,
+            label: t.label,
+            section: t.section,
+            capacity: t.capacity,
+            status: t.status,
+            x: t.x,
+            y: t.y,
+            w: 96,
+            h: 128,
+            guestName: t.guestName,
+            arrivalTime: t.arrivalTime,
+            paymentStatus: t.paymentStatus,
+            subcodes: t.subcodes,
+          }))}
+          selectedId={selectedTableId || undefined}
+          onSelect={handleTableClick}
+          fitConfig={{ padding: 24, minScale: 0.5, maxScale: 2, grid: 8 }}
+        />
 
-      {/* Table Drawer */}
-      <TableDrawer table={selectedTable} open={!!selectedTable} onOpenChange={handleDrawerClose} />
+        {/* Table Drawer scoped to this map area only */}
+        <TableDrawer table={selectedTable} open={!!selectedTable} onOpenChange={handleDrawerClose} />
+      </div>
     </div>
   );
 };

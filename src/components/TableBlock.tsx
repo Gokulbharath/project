@@ -1,7 +1,7 @@
 import { cn } from '@/lib/utils';
 import type { Table } from '@/types';
 import { STATUS_COLORS } from '@/utils/constants';
-import { Users } from 'lucide-react';
+import Icon from '@/components/ui/Icon';
 
 interface TableBlockProps {
   table: Table;
@@ -39,7 +39,7 @@ export const TableBlock = ({ table, onClick, className }: TableBlockProps) => {
         </div>
 
         <div className="flex items-center gap-1 text-xs text-muted-foreground">
-          <Users className="w-3 h-3" />
+          <Icon name="group" size={12} />
           <span>{table.capacity}</span>
         </div>
 

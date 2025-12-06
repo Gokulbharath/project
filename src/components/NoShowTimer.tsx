@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { AlertTriangle, Clock } from 'lucide-react';
+import Icon from '@/components/ui/Icon';
 import type { BookingDetail } from '@/types';
 
 interface NoShowTimerProps {
@@ -37,8 +37,8 @@ export const NoShowTimer = ({ booking, onMarkNoShow }: NoShowTimerProps) => {
     <Card className="glass-card p-4 border-destructive/30 hover-lift">
       <div className="flex items-center justify-between gap-4">
         <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-lg bg-destructive/10 flex items-center justify-center">
-            <AlertTriangle className="w-5 h-5 text-destructive animate-pulse" />
+            <div className="w-10 h-10 rounded-lg bg-destructive/10 flex items-center justify-center">
+            <Icon name="warning" size={18} className="text-destructive animate-pulse" />
           </div>
 
           <div>
@@ -52,7 +52,7 @@ export const NoShowTimer = ({ booking, onMarkNoShow }: NoShowTimerProps) => {
         <div className="text-right flex items-center gap-3">
           <div>
             <div className="text-lg font-bold text-destructive flex items-center gap-1">
-              <Clock className="w-4 h-4" />
+              <Icon name="clock" size={14} className="" />
               {String(minutes).padStart(2, '0')}:{String(seconds).padStart(2, '0')}
             </div>
             <div className="text-xs text-muted-foreground">Until no-show</div>

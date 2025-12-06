@@ -1,18 +1,7 @@
 import { Link, useLocation } from 'react-router-dom';
 import { cn } from '@/lib/utils';
 import { useAuth } from '@/hooks/useAuth';
-import {
-  LayoutDashboard,
-  Map,
-  Users,
-  UserPlus,
-  CreditCard,
-  BarChart3,
-  FileText,
-  Grid3x3,
-  LogOut,
-  Settings,
-} from 'lucide-react';
+import Icon from '@/components/ui/Icon';
 import { ROUTES } from '@/utils/constants';
 import { Button } from '@/components/ui/button';
 
@@ -28,69 +17,69 @@ const navItems: NavItem[] = [
   {
     label: 'Dashboard',
     path: ROUTES.STAFF_DASHBOARD,
-    icon: <LayoutDashboard className="w-5 h-5" />,
+    icon: <Icon name="dashboard" size={18} className="mr-2 text-white/80 group-hover:text-white transition" />,
     group: 'staff',
   },
   {
     label: 'Table Map',
     path: ROUTES.STAFF_TABLE_MAP,
-    icon: <Map className="w-5 h-5" />,
+    icon: <Icon name="table-map" size={18} className="mr-2 text-white/80 group-hover:text-white transition" />,
     group: 'staff',
   },
   {
     label: 'Arrivals',
     path: ROUTES.STAFF_ARRIVALS,
-    icon: <Users className="w-5 h-5" />,
+    icon: <Icon name="arrivals" size={18} className="mr-2 text-white/80 group-hover:text-white transition" />,
     group: 'staff',
   },
   {
     label: 'Payments',
     path: ROUTES.STAFF_PAYMENTS,
-    icon: <CreditCard className="w-5 h-5" />,
+    icon: <Icon name="payments" size={18} className="mr-2 text-white/80 group-hover:text-white transition" />,
     group: 'staff',
   },
   {
     label: 'Walk-ins',
     path: ROUTES.STAFF_WALKINS,
-    icon: <UserPlus className="w-5 h-5" />,
+    icon: <Icon name="walkins" size={18} className="mr-2 text-white/80 group-hover:text-white transition" />,
     group: 'staff',
   },
   // Admin section
   {
     label: 'Admin',
     path: ROUTES.ADMIN_DASHBOARD,
-    icon: <BarChart3 className="w-5 h-5" />,
+    icon: <Icon name="analytics" size={18} className="mr-2 text-white/80 group-hover:text-white transition" />,
     group: 'admin',
   },
   {
     label: 'Onboarding',
     path: ROUTES.ADMIN_ONBOARDING,
-    icon: <Grid3x3 className="w-5 h-5" />,
+    icon: <Icon name="onboarding" size={18} className="mr-2 text-white/80 group-hover:text-white transition" />,
     group: 'admin',
   },
   {
     label: 'Layout Editor',
     path: ROUTES.ADMIN_LAYOUT,
-    icon: <Map className="w-5 h-5" />,
+    icon: <Icon name="layout" size={18} className="mr-2 text-white/80 group-hover:text-white transition" />,
     group: 'admin',
   },
   {
     label: 'Analytics',
     path: ROUTES.ADMIN_ANALYTICS,
-    icon: <BarChart3 className="w-5 h-5" />,
+    icon: <Icon name="analytics" size={18} className="mr-2 text-white/80 group-hover:text-white transition" />,
     group: 'admin',
   },
   {
     label: 'System Logs',
     path: ROUTES.ADMIN_LOGS,
-    icon: <FileText className="w-5 h-5" />,
+    icon: <Icon name="logs" size={18} className="mr-2 text-white/80 group-hover:text-white transition" />,
     group: 'admin',
   },
   // Footer
   {
     label: 'Settings',
     path: '/settings',
-    icon: <Settings className="w-5 h-5" />,
+    icon: <Icon name="settings" size={18} className="mr-2 text-white/80 group-hover:text-white transition" />,
     group: 'footer',
   },
 ];
@@ -170,7 +159,7 @@ export const Sidebar = () => {
           className="w-full flex items-center justify-center gap-2 bg-error/10 hover:bg-error/20 text-error border border-error/30 transition-all h-9 rounded-lg"
           variant="outline"
         >
-          <LogOut className="w-4 h-4" />
+          <Icon name="logout" size={16} />
           <span className="text-sm font-medium">Logout</span>
         </Button>
       </div>

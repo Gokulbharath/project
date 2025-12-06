@@ -31,7 +31,6 @@ export const MapCanvas = ({
 
   const {
     scale,
-    offset,
     fitToView,
     zoomAtPoint,
     pan,
@@ -39,7 +38,7 @@ export const MapCanvas = ({
   } = useFitToCanvas(containerRef, items, config);
 
   const [isPanning, setIsPanning] = useState(false);
-  const [panStart, setPanStart] = useState({ x: 0, y: 0 });
+  const panStartRef = useRef({ x: 0, y: 0 });
 
   // Mouse wheel zoom
   useEffect(() => {
@@ -72,50 +71,72 @@ export const MapCanvas = ({
   }, [zoomAtPoint]);
 
   // Keyboard shortcuts
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      const isCtrlOrCmd = e.ctrlKey || e.metaKey;
-      if (!isCtrlOrCmd) return;
+  // Keyboard shortcuts scoped to the container (container must be focused)
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    const isCtrlOrCmd = e.ctrlKey || e.metaKey;
+    if (!isCtrlOrCmd) return;
 
-      if (e.key === '-' || e.key === '_') {
-        e.preventDefault();
-        zoomAtPoint(-0.1, {
-          x: (containerRef.current?.clientWidth ?? 0) / 2,
-          y: (containerRef.current?.clientHeight ?? 0) / 2,
-        });
-      } else if (e.key === '+' || e.key === '=') {
-        e.preventDefault();
-        zoomAtPoint(0.1, {
-          x: (containerRef.current?.clientWidth ?? 0) / 2,
-          y: (containerRef.current?.clientHeight ?? 0) / 2,
-        });
-      } else if (e.key === '0') {
-        e.preventDefault();
-        fitToView();
-      }
+    if (e.key === '-' || e.key === '_') {
+      e.preventDefault();
+      zoomAtPoint(-0.1, {
+        x: (containerRef.current?.clientWidth ?? 0) / 2,
+        y: (containerRef.current?.clientHeight ?? 0) / 2,
+      });
+    } else if (e.key === '+' || e.key === '=') {
+      e.preventDefault();
+      zoomAtPoint(0.1, {
+        x: (containerRef.current?.clientWidth ?? 0) / 2,
+        y: (containerRef.current?.clientHeight ?? 0) / 2,
+      });
+    } else if (e.key === '0') {
+      e.preventDefault();
+      fitToView();
+    }
+  };
+
+  // Pan with mouse drag. Attach global listeners so dragging won't get stuck
+  // when the pointer moves over interactive children (like table buttons).
+  const handleMouseDown = (e: React.MouseEvent) => {
+    // Allow left-button drags when clicking the empty background only,
+    // or allow middle-button drags anywhere to enable natural panning.
+    const isLeft = e.button === 0;
+    const isMiddle = e.button === 1;
+
+    if (!isLeft && !isMiddle) return;
+
+    // Start panning only when clicking the container background (not interactive children)
+    const clickedContainer = e.target === containerRef.current;
+    if (!clickedContainer && !isMiddle) return;
+
+    e.preventDefault();
+    setIsPanning(true);
+    panStartRef.current = { x: e.clientX, y: e.clientY };
+
+    // Global move/up handlers to keep pan responsive across children
+    const handleDocMove = (ev: MouseEvent) => {
+      const deltaX = ev.clientX - panStartRef.current.x;
+      const deltaY = ev.clientY - panStartRef.current.y;
+      pan(deltaX, deltaY);
+      panStartRef.current = { x: ev.clientX, y: ev.clientY };
     };
 
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [zoomAtPoint, fitToView]);
+    const handleDocUp = () => {
+      setIsPanning(false);
+      document.removeEventListener('mousemove', handleDocMove);
+      document.removeEventListener('mouseup', handleDocUp);
+    };
 
-  // Pan with mouse drag
-  const handleMouseDown = (e: React.MouseEvent) => {
-    if (e.button !== 0) return; // Left mouse only
-    if (e.target !== stageRef.current && !stageRef.current?.contains(e.target as Node)) return;
-
-    setIsPanning(true);
-    setPanStart({ x: e.clientX, y: e.clientY });
+    document.addEventListener('mousemove', handleDocMove);
+    document.addEventListener('mouseup', handleDocUp);
   };
 
   const handleMouseMove = (e: React.MouseEvent) => {
+    // keep legacy handler for React events (no-op when global listeners are attached)
     if (!isPanning) return;
-
-    const deltaX = e.clientX - panStart.x;
-    const deltaY = e.clientY - panStart.y;
-
+    const deltaX = e.clientX - panStartRef.current.x;
+    const deltaY = e.clientY - panStartRef.current.y;
     pan(deltaX, deltaY);
-    setPanStart({ x: e.clientX, y: e.clientY });
+    panStartRef.current = { x: e.clientX, y: e.clientY };
   };
 
   const handleMouseUp = () => {
@@ -164,12 +185,14 @@ export const MapCanvas = ({
       {/* Canvas Container */}
       <div
         ref={containerRef}
+        tabIndex={0}
         className={cn(
-          'relative h-[70vh] min-h-[520px] rounded-2xl glass neon-border overflow-hidden',
+          'relative z-0 h-[72vh] min-h-[520px] rounded-2xl glass neon-border overflow-hidden',
           'transition-colors duration-200',
           isPanning && 'cursor-grabbing',
           !isPanning && 'cursor-grab'
         )}
+        onKeyDown={handleKeyDown}
         onMouseDown={handleMouseDown}
         onMouseMove={handleMouseMove}
         onMouseUp={handleMouseUp}
@@ -183,8 +206,6 @@ export const MapCanvas = ({
           ref={stageRef}
           className="absolute inset-0 pointer-events-none"
           style={{
-            transform: `translate(${offset.x}px, ${offset.y}px) scale(${scale})`,
-            transformOrigin: '0 0',
             width: '100%',
             height: '100%',
           }}
@@ -203,7 +224,7 @@ export const MapCanvas = ({
           </svg>
 
           {/* Table Cards */}
-          <div className="absolute inset-0 pointer-events-auto">
+          <div className="absolute inset-0 pointer-events-none">
             {items.map((table) => {
               const screenPos = toScreen({ x: table.x, y: table.y });
               const w = (table.w ?? 96) * scale;
@@ -215,6 +236,7 @@ export const MapCanvas = ({
                   table={table}
                   selected={selectedId === table.id}
                   onOpen={() => onSelect(table.id)}
+                  className="pointer-events-auto"
                   viewportScale={scale}
                   style={{
                     position: 'absolute',

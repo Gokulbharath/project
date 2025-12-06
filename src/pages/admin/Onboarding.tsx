@@ -7,7 +7,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { api } from '@/services/api';
 import { toast } from 'sonner';
 import type { VenueOnboarding } from '@/types';
-import { Building2, Clock, Award } from 'lucide-react';
+import Icon from '@/components/ui/Icon';
 import { SUBSCRIPTION_PLANS } from '@/utils/constants';
 
 export const Onboarding = () => {
@@ -49,7 +49,7 @@ export const Onboarding = () => {
         <form onSubmit={handleSubmit} className="space-y-8">
           <div className="space-y-4">
             <div className="flex items-center gap-2 text-neon-primary mb-4">
-              <Building2 className="w-5 h-5" />
+              <Icon name="map" size={18} />
               <h2 className="text-lg font-semibold">Venue Information</h2>
             </div>
 
@@ -118,7 +118,7 @@ export const Onboarding = () => {
 
           <div className="space-y-4">
             <div className="flex items-center gap-2 text-neon-accent mb-4">
-              <Clock className="w-5 h-5" />
+              <Icon name="clock" size={18} />
               <h2 className="text-lg font-semibold">Operating Hours</h2>
             </div>
 
@@ -151,7 +151,7 @@ export const Onboarding = () => {
 
           <div className="space-y-4">
             <div className="flex items-center gap-2 text-neon-success mb-4">
-              <Award className="w-5 h-5" />
+              <Icon name="vip" size={18} />
               <h2 className="text-lg font-semibold">Subscription Plan</h2>
             </div>
 

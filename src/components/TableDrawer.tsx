@@ -10,7 +10,7 @@ import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
 import type { Table } from '@/types';
 import { formatCurrency } from '@/utils/format';
-import { Users, DollarSign, Tag, ShapesIcon } from 'lucide-react';
+import Icon from '@/components/ui/Icon';
 
 interface TableDrawerProps {
   table: Table | null;
@@ -36,7 +36,7 @@ export const TableDrawer = ({ table, open, onClose }: TableDrawerProps) => {
           <div className="grid grid-cols-2 gap-4">
             <div className="glass p-4 rounded-lg">
               <div className="flex items-center gap-2 text-muted-foreground mb-2">
-                <Users className="w-4 h-4" />
+                <Icon name="group" size={16} className="" />
                 <span className="text-xs font-semibold uppercase">Capacity</span>
               </div>
               <div className="text-2xl font-bold text-white">{table.capacity}</div>
@@ -44,7 +44,7 @@ export const TableDrawer = ({ table, open, onClose }: TableDrawerProps) => {
 
             <div className="glass p-4 rounded-lg">
               <div className="flex items-center gap-2 text-muted-foreground mb-2">
-                <Tag className="w-4 h-4" />
+                <Icon name="tag" size={16} className="" />
                 <span className="text-xs font-semibold uppercase">Category</span>
               </div>
               <div className="text-2xl font-bold text-neon-primary">{table.category}</div>
@@ -52,7 +52,7 @@ export const TableDrawer = ({ table, open, onClose }: TableDrawerProps) => {
 
             <div className="glass p-4 rounded-lg">
               <div className="flex items-center gap-2 text-muted-foreground mb-2">
-                <ShapesIcon className="w-4 h-4" />
+                <Icon name="seat" size={16} className="" />
                 <span className="text-xs font-semibold uppercase">Shape</span>
               </div>
               <div className="text-2xl font-bold text-white capitalize">{table.shape}</div>
@@ -60,7 +60,7 @@ export const TableDrawer = ({ table, open, onClose }: TableDrawerProps) => {
 
             <div className="glass p-4 rounded-lg">
               <div className="flex items-center gap-2 text-muted-foreground mb-2">
-                <DollarSign className="w-4 h-4" />
+                <Icon name="money" size={16} className="" />
                 <span className="text-xs font-semibold uppercase">Min Spend</span>
               </div>
               <div className="text-2xl font-bold text-neon-success">{formatCurrency(table.minSpend)}</div>

@@ -2,7 +2,7 @@ import { Card } from '@/components/ui/card';
 import { StatusBadge } from './StatusBadge';
 import { formatTimeAgo } from '@/utils/format';
 import type { Arrival } from '@/types';
-import { Users, Clock } from 'lucide-react';
+import Icon from '@/components/ui/Icon';
 
 interface ArrivalItemProps {
   arrival: Arrival;
@@ -20,11 +20,11 @@ export const ArrivalItem = ({ arrival }: ArrivalItemProps) => {
 
           <div className="flex items-center gap-4 text-xs text-muted-foreground">
             <div className="flex items-center gap-1">
-              <Users className="w-3 h-3" />
+              <Icon name="group" size={12} className="w-3 h-3" />
               <span>{arrival.groupSize} guests</span>
             </div>
             <div className="flex items-center gap-1">
-              <Clock className="w-3 h-3" />
+              <Icon name="clock" size={12} className="w-3 h-3" />
               <span>{formatTimeAgo(arrival.timestamp)}</span>
             </div>
           </div>

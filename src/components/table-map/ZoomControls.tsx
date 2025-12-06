@@ -1,4 +1,4 @@
-import { ZoomIn, ZoomOut, Maximize2 } from 'lucide-react';
+import Icon from '@/components/ui/Icon';
 import { Button } from '@/components/ui/button';
 import {
   Tooltip,
@@ -18,11 +18,11 @@ export const ZoomControls = ({ scale, onZoomIn, onZoomOut, onFit }: ZoomControls
 
   return (
     <TooltipProvider>
-      <div className="absolute top-4 right-4 z-50 flex flex-col gap-2 glass neon-border p-2 rounded-lg">
+      <div className="absolute top-4 right-4 z-20 pointer-events-auto flex flex-col gap-2 glass neon-border p-2 rounded-lg">
         {/* Zoom Out */}
         <Tooltip>
           <TooltipTrigger asChild>
-            <Button
+              <Button
               size="sm"
               variant="outline"
                onClick={onZoomOut}
@@ -30,7 +30,7 @@ export const ZoomControls = ({ scale, onZoomIn, onZoomOut, onFit }: ZoomControls
               className="h-9 w-9 p-0 border-[rgba(138,92,255,.25)] hover:bg-neon/10 focus:ring-[rgba(138,92,255,.6)]"
               title="Zoom Out (Cmd -)"
             >
-              <ZoomOut className="w-4 h-4" />
+              <Icon name="zoom-out" size={16} />
             </Button>
           </TooltipTrigger>
           <TooltipContent side="left" className="text-xs">
@@ -53,7 +53,7 @@ export const ZoomControls = ({ scale, onZoomIn, onZoomOut, onFit }: ZoomControls
               className="h-9 w-9 p-0 border-[rgba(138,92,255,.25)] hover:bg-neon/10 focus:ring-[rgba(138,92,255,.6)]"
               title="Fit to Screen (Cmd 0)"
             >
-              <Maximize2 className="w-4 h-4" />
+              <Icon name="fit" size={16} />
             </Button>
           </TooltipTrigger>
           <TooltipContent side="left" className="text-xs">
@@ -72,7 +72,7 @@ export const ZoomControls = ({ scale, onZoomIn, onZoomOut, onFit }: ZoomControls
               className="h-9 w-9 p-0 border-[rgba(138,92,255,.25)] hover:bg-neon/10 focus:ring-[rgba(138,92,255,.6)]"
               title="Zoom In (Cmd +)"
             >
-              <ZoomIn className="w-4 h-4" />
+              <Icon name="zoom-in" size={16} />
             </Button>
           </TooltipTrigger>
           <TooltipContent side="left" className="text-xs">

@@ -9,7 +9,7 @@ import { api } from '@/services/api';
 import { useAuth } from '@/hooks/useAuth';
 import { ROUTES } from '@/utils/constants';
 import { toast } from 'sonner';
-import { Mail, Lock } from 'lucide-react';
+import Icon from '@/components/ui/Icon';
 
 export const Login = () => {
   const navigate = useNavigate();
@@ -67,7 +67,7 @@ export const Login = () => {
                   Email
                 </Label>
                 <div className="relative">
-                  <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+                  <Icon name="mail" size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" />
                   <Input
                     id="staff-email"
                     type="email"
@@ -85,7 +85,7 @@ export const Login = () => {
                   Password
                 </Label>
                 <div className="relative">
-                  <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+                  <Icon name="lock" size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" />
                   <Input
                     id="staff-password"
                     type="password"
@@ -126,7 +126,7 @@ export const Login = () => {
                   Email
                 </Label>
                 <div className="relative">
-                  <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+                  <Icon name="mail" size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" />
                   <Input
                     id="admin-email"
                     type="email"
@@ -144,7 +144,7 @@ export const Login = () => {
                   Password
                 </Label>
                 <div className="relative">
-                  <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+                  <Icon name="lock" size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" />
                   <Input
                     id="admin-password"
                     type="password"
