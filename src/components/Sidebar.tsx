@@ -23,7 +23,7 @@ const navItems: NavItem[] = [
   {
     label: 'Table Map',
     path: ROUTES.STAFF_TABLE_MAP,
-    icon: <Icon name="table-map" size={18} className="mr-2 text-white/80 group-hover:text-white transition" />,
+    icon: <Icon name="map" size={18} className="mr-2 text-white/80 group-hover:text-white transition" />,
     group: 'staff',
   },
   {
@@ -42,6 +42,12 @@ const navItems: NavItem[] = [
     label: 'Walk-ins',
     path: ROUTES.STAFF_WALKINS,
     icon: <Icon name="walkins" size={18} className="mr-2 text-white/80 group-hover:text-white transition" />,
+    group: 'staff',
+  },
+  {
+    label: 'Bookings',
+    path: ROUTES.STAFF_BOOKINGS,
+    icon: <Icon name="calendar" size={18} className="mr-2 text-white/80 group-hover:text-white transition" />,
     group: 'staff',
   },
   // Admin section
@@ -77,9 +83,9 @@ const navItems: NavItem[] = [
   },
   // Footer
   {
-    label: 'Settings',
-    path: '/settings',
-    icon: <Icon name="settings" size={18} className="mr-2 text-white/80 group-hover:text-white transition" />,
+    label: 'Support',
+    path: ROUTES.STAFF_SUPPORT,
+    icon: <Icon name="help-circle" size={18} className="mr-2 text-white/80 group-hover:text-white transition" />,
     group: 'footer',
   },
 ];

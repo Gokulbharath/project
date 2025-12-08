@@ -5,16 +5,21 @@ import { ProtectedRoute } from '@/components/ProtectedRoute';
 import { AppLayout } from '@/layouts/AppLayout';
 import { Login } from '@/pages/Login';
 import { StaffDashboard } from '@/pages/staff/Dashboard';
-import { TableMap } from '@/pages/staff/TableMap';
 import { Arrivals } from '@/pages/staff/Arrivals';
 import { WalkIns } from '@/pages/staff/WalkIns';
 import { Payments } from '@/pages/staff/Payments';
+import BookingsList from '@/pages/staff/bookings';
+import NotificationsIndex from '@/pages/staff/notifications/Index';
+import ProfileIndex from '@/pages/staff/profile/Index';
+import SupportIndex from '@/pages/staff/support/Index';
+import SettingsIndex from '@/pages/staff/settings/Index';
 import { AdminDashboard } from '@/pages/admin/Dashboard';
 import { Onboarding } from '@/pages/admin/Onboarding';
 import { LayoutEditor } from '@/pages/admin/Layout';
 import { Analytics } from '@/pages/admin/Analytics';
 import { SystemLogs } from '@/pages/admin/Logs';
 import { ROUTES } from '@/utils/constants';
+import TableMapIndex from '@/pages/staff/table-map/Index';
 
 function App() {
   return (
@@ -24,109 +29,38 @@ function App() {
         <Routes>
           <Route path={ROUTES.LOGIN} element={<Login />} />
 
-          {/* Staff Routes */}
           <Route
-            path={ROUTES.STAFF_DASHBOARD}
             element={
               <ProtectedRoute requiredRole="staff">
-                <AppLayout>
-                  <StaffDashboard />
-                </AppLayout>
+                <AppLayout />
               </ProtectedRoute>
             }
-          />
-          <Route
-            path={ROUTES.STAFF_TABLE_MAP}
-            element={
-              <ProtectedRoute requiredRole="staff">
-                <AppLayout>
-                  <TableMap />
-                </AppLayout>
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path={ROUTES.STAFF_ARRIVALS}
-            element={
-              <ProtectedRoute requiredRole="staff">
-                <AppLayout>
-                  <Arrivals />
-                </AppLayout>
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path={ROUTES.STAFF_WALKINS}
-            element={
-              <ProtectedRoute requiredRole="staff">
-                <AppLayout>
-                  <WalkIns />
-                </AppLayout>
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path={ROUTES.STAFF_PAYMENTS}
-            element={
-              <ProtectedRoute requiredRole="staff">
-                <AppLayout>
-                  <Payments />
-                </AppLayout>
-              </ProtectedRoute>
-            }
-          />
+          >
+            <Route path={ROUTES.STAFF_DASHBOARD} element={<StaffDashboard />} />
+            <Route path={ROUTES.STAFF_TABLE_MAP} element={<TableMapIndex />} />
+            <Route path={ROUTES.STAFF_ARRIVALS} element={<Arrivals />} />
+            <Route path={ROUTES.STAFF_WALKINS} element={<WalkIns />} />
+            <Route path={ROUTES.STAFF_PAYMENTS} element={<Payments />} />
+            <Route path={ROUTES.STAFF_BOOKINGS} element={<BookingsList />} />
+            <Route path={ROUTES.STAFF_NOTIFICATIONS} element={<NotificationsIndex />} />
+            <Route path={ROUTES.STAFF_PROFILE} element={<ProfileIndex />} />
+            <Route path={ROUTES.STAFF_SUPPORT} element={<SupportIndex />} />
+            <Route path={ROUTES.STAFF_SETTINGS} element={<SettingsIndex />} />
+          </Route>
 
-          {/* Admin Routes */}
           <Route
-            path={ROUTES.ADMIN_DASHBOARD}
             element={
               <ProtectedRoute requiredRole="admin">
-                <AppLayout>
-                  <AdminDashboard />
-                </AppLayout>
+                <AppLayout />
               </ProtectedRoute>
             }
-          />
-          <Route
-            path={ROUTES.ADMIN_ONBOARDING}
-            element={
-              <ProtectedRoute requiredRole="admin">
-                <AppLayout>
-                  <Onboarding />
-                </AppLayout>
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path={ROUTES.ADMIN_LAYOUT}
-            element={
-              <ProtectedRoute requiredRole="admin">
-                <AppLayout>
-                  <LayoutEditor />
-                </AppLayout>
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path={ROUTES.ADMIN_ANALYTICS}
-            element={
-              <ProtectedRoute requiredRole="admin">
-                <AppLayout>
-                  <Analytics />
-                </AppLayout>
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path={ROUTES.ADMIN_LOGS}
-            element={
-              <ProtectedRoute requiredRole="admin">
-                <AppLayout>
-                  <SystemLogs />
-                </AppLayout>
-              </ProtectedRoute>
-            }
-          />
+          >
+            <Route path={ROUTES.ADMIN_DASHBOARD} element={<AdminDashboard />} />
+            <Route path={ROUTES.ADMIN_ONBOARDING} element={<Onboarding />} />
+            <Route path={ROUTES.ADMIN_LAYOUT} element={<LayoutEditor />} />
+            <Route path={ROUTES.ADMIN_ANALYTICS} element={<Analytics />} />
+            <Route path={ROUTES.ADMIN_LOGS} element={<SystemLogs />} />
+          </Route>
 
           <Route path="/" element={<Navigate to={ROUTES.LOGIN} replace />} />
         </Routes>

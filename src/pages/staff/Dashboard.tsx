@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { KpiCard } from '@/components/KpiCard';
 import { ReservationTimeline } from '@/components/ReservationTimeline';
-import { SectionTitle } from '@/components/SectionTitle';
+import { PageHeader } from '@/components/common/PageHeader';
 import { api } from '@/services/api';
 import { Skeleton } from '@/components/ui/skeleton';
 
@@ -46,11 +46,7 @@ export const StaffDashboard = () => {
   if (loading) {
     return (
       <div className="space-y-8">
-        <div>
-          <h1 className="heading-hero mb-2">Staff Dashboard</h1>
-          <p className="text-text-dim">Real-time venue overview</p>
-        </div>
-
+        <PageHeader title="Staff Dashboard" subtitle="Real-time venue overview" />
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {[...Array(4)].map((_, i) => (
             <Skeleton key={i} className="h-32 rounded-2xl" />
@@ -62,11 +58,7 @@ export const StaffDashboard = () => {
 
   return (
     <div className="space-y-8">
-      {/* Header */}
-      <SectionTitle 
-        title="Staff Dashboard" 
-        subtitle="Real-time venue overview"
-      />
+      <PageHeader title="Staff Dashboard" subtitle="Real-time venue overview" />
 
       {/* KPI Cards Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">

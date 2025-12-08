@@ -8,6 +8,10 @@ export const useSocket = () => {
 
   useEffect(() => {
     const socketInstance = initSocket();
+    if (!socketInstance) {
+      return;
+    }
+
     setSocket(socketInstance);
 
     const handleConnect = () => {

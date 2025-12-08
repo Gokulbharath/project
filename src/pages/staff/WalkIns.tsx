@@ -9,6 +9,7 @@ import { api } from '@/services/api';
 import { toast } from 'sonner';
 import type { Table, WalkInBookingForm } from '@/types';
 import Icon from '@/components/ui/Icon';
+import { PageHeader } from '@/components/common/PageHeader';
 
 export const WalkIns = () => {
   const [tables, setTables] = useState<Table[]>([]);
@@ -60,11 +61,8 @@ export const WalkIns = () => {
   const selectedTable = tables.find((t) => t.id === formData.tableId);
 
   return (
-    <div className="space-y-6 max-w-2xl">
-      <div>
-        <h1 className="text-3xl font-bold text-white mb-2">Walk-in Booking</h1>
-        <p className="text-muted-foreground">Create a new booking for walk-in guests</p>
-      </div>
+    <div className="space-y-6 max-w-2xl" data-testid="walkins-page">
+      <PageHeader title="Walk-in Booking" subtitle="Create a new booking for walk-in guests" />
 
       <Card className="glass-card p-6">
         <form onSubmit={handleSubmit} className="space-y-6">

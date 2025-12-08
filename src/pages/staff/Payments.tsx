@@ -6,6 +6,7 @@ import { toast } from 'sonner';
 import type { Payment, BookingDetail } from '@/types';
 import { Skeleton } from '@/components/ui/skeleton';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { PageHeader } from '@/components/common/PageHeader';
 
 export const Payments = () => {
   const [payments, setPayments] = useState<Payment[]>([]);
@@ -55,12 +56,8 @@ export const Payments = () => {
 
   if (loading) {
     return (
-      <div className="space-y-6">
-        <div>
-          <h1 className="text-3xl font-bold text-white mb-2">Payments & No-Shows</h1>
-          <p className="text-muted-foreground">Track payments and no-show alerts</p>
-        </div>
-
+      <div className="space-y-6" data-testid="payments-page">
+        <PageHeader title="Payments & No-Shows" subtitle="Track payments and no-show alerts" />
         <div className="space-y-3">
           {[...Array(3)].map((_, i) => (
             <Skeleton key={i} className="h-24 rounded-xl" />
@@ -71,11 +68,8 @@ export const Payments = () => {
   }
 
   return (
-    <div className="space-y-6">
-      <div>
-        <h1 className="text-3xl font-bold text-white mb-2">Payments & No-Shows</h1>
-        <p className="text-muted-foreground">Track payments and no-show alerts</p>
-      </div>
+    <div className="space-y-6" data-testid="payments-page">
+      <PageHeader title="Payments & No-Shows" subtitle="Track payments and no-show alerts" />
 
       <Tabs defaultValue="payments">
         <TabsList className="glass">

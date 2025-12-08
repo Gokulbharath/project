@@ -1,13 +1,15 @@
 import { ReactNode } from 'react';
+import { Outlet, useLocation } from 'react-router-dom';
 import { Sidebar } from '@/components/Sidebar';
 import { Topbar } from '@/components/Topbar';
-import HitTestProbe from '@/dev/HitTestProbe';
 
 interface AppLayoutProps {
-  children: ReactNode;
+  children?: ReactNode;
 }
 
 export const AppLayout = ({ children }: AppLayoutProps) => {
+  const location = useLocation();
+
   return (
     <div className="min-h-screen flex bg-bg-dark text-text-high">
       <aside className="relative z-40">
@@ -21,12 +23,11 @@ export const AppLayout = ({ children }: AppLayoutProps) => {
 
         <main className="flex-1 overflow-auto relative z-0 isolate">
           <div className="max-w-7xl mx-auto p-6 md:p-8">
-            {children}
+            {children ?? <Outlet key={location.pathname} />}
           </div>
         </main>
       </div>
 
-      <HitTestProbe />
     </div>
   );
 };

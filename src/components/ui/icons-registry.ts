@@ -41,6 +41,18 @@ export const registry = {
   filter:        'solar:tuning-2-bold-duotone',
   plus:          'solar:add-bold-duotone',
   save:          'solar:download-bold-duotone',
+  eye:           'solar:eye-bold-duotone',
+  'dollar-sign': 'solar:dollar-minimalistic-bold-duotone',
+  x:             'solar:close-circle-bold-duotone',
+  'more-vertical': 'solar:menu-dots-vertical-bold-duotone',
+  'chevron-up':  'solar:alt-arrow-up-bold-duotone',
+  'chevron-down': 'solar:alt-arrow-down-bold-duotone',
+  'refresh-cw':  'solar:refresh-bold-duotone',
+  'help-circle': 'solar:question-circle-bold-duotone',
+  bug:           'solar:bug-bold-duotone',
+  inbox:         'solar:inbox-bold-duotone',
+  'alert-circle': 'solar:danger-circle-bold-duotone',
+  'alert-triangle': 'solar:danger-triangle-bold-duotone',
 
   // Feedback / states
   info:          'solar:info-circle-bold-duotone',

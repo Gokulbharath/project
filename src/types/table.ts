@@ -13,15 +13,3 @@ export type TableItem = {
   h?: number;
 };
 
-export type Viewport = {
-  scale: number;
-  tx: number;
-  ty: number;
-};
-
-export type FitOpts = {
-  padding: number;
-  minScale: number;
-  maxScale: number;
-};
-

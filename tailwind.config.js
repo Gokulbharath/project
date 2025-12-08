@@ -20,6 +20,18 @@ export default {
       colors: {
         background: 'hsl(var(--background))',
         foreground: 'hsl(var(--foreground))',
+        night: '#0B0B1A',
+        surface: '#121229',
+        surfaceAlt: '#0E0E20',
+        neon: '#8A5CFF',
+        cyan: '#4DD4FF',
+        blue: '#2EB1FF',
+        pink: '#FF4D8D',
+        green: '#20E3B2',
+        yellow: '#FFC857',
+        red: '#FF5C7C',
+        textHigh: '#E7E7F4',
+        textDim: '#A3A3B2',
         card: {
           DEFAULT: 'hsl(var(--card))',
           foreground: 'hsl(var(--card-foreground))',

@@ -5,6 +5,7 @@ import { useSocket } from '@/hooks/useSocket';
 import type { Arrival } from '@/types';
 import { Skeleton } from '@/components/ui/skeleton';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { PageHeader } from '@/components/common/PageHeader';
 
 export const Arrivals = () => {
   const [arrivals, setArrivals] = useState<Arrival[]>([]);
@@ -37,12 +38,8 @@ export const Arrivals = () => {
 
   if (loading) {
     return (
-      <div className="space-y-6">
-        <div>
-          <h1 className="text-3xl font-bold text-white mb-2">Arrival Logs</h1>
-          <p className="text-muted-foreground">Real-time guest arrivals</p>
-        </div>
-
+      <div className="space-y-6" data-testid="arrivals-page">
+        <PageHeader title="Arrivals" subtitle="Track guest arrivals in real time" />
         <div className="space-y-3">
           {[...Array(5)].map((_, i) => (
             <Skeleton key={i} className="h-24 rounded-xl" />
@@ -53,11 +50,8 @@ export const Arrivals = () => {
   }
 
   return (
-    <div className="space-y-6">
-      <div>
-        <h1 className="text-3xl font-bold text-white mb-2">Arrival Logs</h1>
-        <p className="text-muted-foreground">Real-time guest arrivals</p>
-      </div>
+    <div className="space-y-6" data-testid="arrivals-page">
+      <PageHeader title="Arrivals" subtitle="Track guest arrivals in real time" />
 
       <Tabs defaultValue="today" onValueChange={(v) => setFilter(v as 'today' | 'all')}>
         <TabsList className="glass">

@@ -1,7 +1,4 @@
-/* Never let Table Map create full-screen interactive layers */
-#table-map-canvas :is(.tm-fullscreen, .tm-overlay) {
-  position: absolute !important;
-  inset: 0 !important;
-  z-index: 10 !important; /* below sidebar/topbar */
+/* guard placeholders */
+.modal-open {
+  overflow: hidden;
 }
-#table-map-canvas .visual-only { pointer-events: none !important; }
